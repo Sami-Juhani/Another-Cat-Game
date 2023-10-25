@@ -5,7 +5,7 @@ export default class UI {
         this.fontColor = 'black';
         this.fontSize = 30;
         this.livesImage = document.getElementById('lives');
-        this.healthBar = new healthBar(this.game);
+        this.staminaBar = new StaminaBar(this.game);
         this.abilityBar = new AbilityBar(this.game);
         this.starGemBar = new StarGemBar(this.game);
     }   
@@ -19,7 +19,7 @@ export default class UI {
         context.fillText('Stamina', this.game.width - 120, 30);
         context.fillText('Abilities', this.game.width - 120, 90);
         this.abilityBar.draw(context);
-        this.healthBar.draw(context, deltaTime);
+        this.staminaBar.draw(context, deltaTime);
         this.starGemBar.draw(context);
         for (let i = 0; i < this.game.player.lives; i++) context.drawImage(this.livesImage, 10 + 35 * i, 40, 30, 30);
         if (this.game.gameOver) {
@@ -34,11 +34,12 @@ export default class UI {
     }
 }
 
-class healthBar {
+class StaminaBar {
     constructor(game) {
         this.game = game;
-        this.y = 40;
         this.maxWidth = 300;
+        this.x = this.game.width - this.maxWidth - 10;
+        this.y = 40;
         this.height = 20;
         this.color = 'rgb(22,40,224, 0.5)';
         this.strokeColor = 'black';
@@ -56,13 +57,13 @@ class healthBar {
         if (this.error && this.errorTimer > 0 && this.errorTimer < 1000) {
             context.lineWidth = 3;
             context.strokeStyle = this.errorColor;
-            context.fillRect(this.game.width - 310, this.y, this.game.player.stamina * 3, this.height);
-            context.strokeRect(this.game.width - 310, this.y, this.maxWidth, this.height);
+            context.fillRect(this.x, this.y, this.game.player.stamina * 3, this.height);
+            context.strokeRect(this.x, this.y, this.maxWidth, this.height);
             this.errorTimer += deltaTime;
         } else {
             context.strokeStyle = this.strokeColor;
-            context.fillRect(this.game.width - 310, this.y, this.game.player.stamina * 3, this.height);
-            context.strokeRect(this.game.width - 310, this.y, this.maxWidth, this.height);
+            context.fillRect(this.x, this.y, this.game.player.stamina * 3, this.height);
+            context.strokeRect(this.x, this.y, this.maxWidth, this.height);
             this.errorTimer = 0;
             this.error = false;
         }
