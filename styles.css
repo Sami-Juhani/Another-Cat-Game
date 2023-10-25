@@ -22,12 +22,6 @@
     font-family: 'Changa', sans-serif;
 }
 
-#button-panel {
-    position: absolute;
-    left: 145px;
-    bottom: 12%;
-}
-
 #music-button {
     font-size: 20px;
     padding: 5px;
@@ -35,11 +29,10 @@
     color: white;
     border-radius: 5px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s ease-in-out;
+    transition: font-size 0.3s ease-in-out;
   }
-  
   #music-button:hover {
-    background-color: #3e8e41;
+   font-size: 22px;
   }
 #player, #layer1, #layer2, #layer3, #layer4, #layer5, #layer6, #layer7, #layer8, #layer9, #woodenBox, #ground, #water, #lives, #box, #mystery-box, #mystery-box-opened, #health-powerup, #star-powerup, #star-powerup-empty, #fire  {
     display: none;
