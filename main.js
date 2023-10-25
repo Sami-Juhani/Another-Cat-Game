@@ -12,16 +12,19 @@ window.addEventListener("load", function () {
   const ctx = canvas.getContext("2d");
   canvas.width = 2000;
   canvas.height = 516;
+  const musicButton = this.document.getElementById("music-button");
 
   window.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && game.gameOver) game.restart();
   });
 
-  this.document.getElementById("music-button").addEventListener("click", (e) => {
+  musicButton.addEventListener("click", (e) => {
     if (!game.backgroundMusicOn) {
+    musicButton.style.backgroundColor = '#4CAF50';
     game.backgroundMusic.play();
     game.backgroundMusicOn = true;
     } else {
+      musicButton.style.backgroundColor = '#FF0055';
       game.backgroundMusic.pause();
       game.backgroundMusicOn = false;
     }
@@ -71,7 +74,7 @@ window.addEventListener("load", function () {
       this.backgroundMusic.autoplay = true;
       this.backgroundMusicOn = true;
       this.backgroundMusic.volume = 0.3;
-      this.backgroundMusic.muted = true;
+      // this.backgroundMusic.muted = true;
       this.gameOverSound = new Audio();
       this.gameOverSound.src = "./src/sounds/GameOver/gameover.wav";
       this.gameOverSound.volume = 0.3;
@@ -148,13 +151,11 @@ window.addEventListener("load", function () {
 
     initialize() {
       const buttonPanel = document.getElementById("button-panel");
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-      const topMargin = (windowHeight - canvas.height) * 0.5;
-      const leftMargin = (windowWidth - canvas.width) * 0.5;
-      buttonPanel.setAttribute("position", "absolute");
-      buttonPanel.style.left = `${leftMargin + 170}px`;
-      buttonPanel.style.top = `${topMargin + 10}px`;
+      const canvasX = canvas.getBoundingClientRect().x;
+      const canvasY = canvas.getBoundingClientRect().y;
+      buttonPanel.style.position = "absolute";
+      buttonPanel.style.left = `${canvasX + game.ui.staminaBar.x - 100}px`;
+      buttonPanel.style.top = `${canvasY + game.ui.staminaBar.y}px`;
       for (let i = 0; i < this.width / this.groundTileWidth * 0.1; i++) this.groundTiles.push(new Ground(this, i * this.groundTileWidth, false));
       for (let i = 1; i < 4; i++) 
         this.waterTiles.push(new Water(this,this.groundTiles.slice(-1)[0].x + this.groundTileWidth * i));
