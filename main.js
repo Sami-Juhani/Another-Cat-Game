@@ -150,12 +150,6 @@ window.addEventListener("load", function () {
     }
 
     initialize() {
-      const buttonPanel = document.getElementById("button-panel");
-      const canvasX = canvas.getBoundingClientRect().x;
-      const canvasY = canvas.getBoundingClientRect().y;
-      buttonPanel.style.position = "absolute";
-      buttonPanel.style.left = `${canvasX + game.ui.staminaBar.x - 100}px`;
-      buttonPanel.style.top = `${canvasY + game.ui.staminaBar.y}px`;
       for (let i = 0; i < this.width / this.groundTileWidth * 0.1; i++) this.groundTiles.push(new Ground(this, i * this.groundTileWidth, false));
       for (let i = 1; i < 4; i++) 
         this.waterTiles.push(new Water(this,this.groundTiles.slice(-1)[0].x + this.groundTileWidth * i));
