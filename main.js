@@ -72,7 +72,7 @@ window.addEventListener("load", function () {
       this.backgroundMusic.src = "./src/sounds/Background/roa-memories.mp3";
       this.backgroundMusic.loop = true;
       this.backgroundMusic.autoplay = true;
-      this.backgroundMusicOn = true;
+      this.backgroundMusicOn = false;
       this.backgroundMusic.volume = 0.3;
       // this.backgroundMusic.muted = true;
       this.gameOverSound = new Audio();
